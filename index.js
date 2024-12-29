@@ -1,14 +1,16 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import studentRouter from './routes/studentRouter.js';
 import productRouter from './routes/productRouter.js';
 import userRouter from './routes/userRouter.js';
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
-const mongoUrl = "mongodb+srv://jayani:1234@cluster0.pjuw7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const mongoUrl = process.env.MONGO_DB_URL
 
 mongoose.connect(mongoUrl,{})
 const connection = mongoose.connection;
@@ -38,7 +40,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/students",studentRouter)
 
 app.use("/api/products",productRouter)
 
