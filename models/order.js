@@ -42,7 +42,7 @@ const orderSchema = mongoose.Schema({
     default : "preparing"
   },
   notes : {
-    type : String
+    type : String // to add small note about order 
   },
   name : {
     type : String,
